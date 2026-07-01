@@ -273,10 +273,17 @@ textarea {
 .secondary-button,
 .danger-button,
 .icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 44px;
   border: 0;
   border-radius: 999px;
   font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -315,9 +322,18 @@ textarea {
 
 .icon-button {
   width: 44px;
+  min-width: 44px;
   background: #f8fafc;
   color: var(--ink);
   font-size: 24px;
+}
+
+body[data-theme="dark"] .icon-button,
+html[data-theme="dark"] .icon-button {
+  background: var(--surface-strong);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  box-shadow: 0 2px 8px rgba(2, 6, 23, 0.18);
 }
 
 .wide-button {
@@ -491,7 +507,7 @@ dialog::backdrop {
 }
 
 form {
-  padding: 14px;
+  padding: 16px;
 }
 
 .dialog-header {
@@ -502,8 +518,8 @@ form {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin: -14px -14px 12px;
-  padding: 14px;
+  margin: -16px -16px 14px;
+  padding: 14px 16px;
   background: var(--surface-strong);
   border-bottom: 1px solid var(--line);
 }
@@ -526,10 +542,80 @@ legend {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  margin: 0 -14px -14px;
-  padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
+  margin: 0 -16px -16px;
+  padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
   background: rgba(255, 255, 255, 0.96);
   border-top: 1px solid var(--line);
+}
+
+@media (max-width: 480px) {
+  dialog {
+    width: calc(100% - 16px);
+    border-radius: 20px;
+  }
+
+  form {
+    padding: 12px;
+  }
+
+  .panel,
+  .list-panel {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .field {
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  input,
+  select,
+  textarea {
+    min-height: 46px;
+    padding: 10px 12px;
+    border-radius: 12px;
+  }
+
+  .primary-button,
+  .secondary-button,
+  .danger-button,
+  .icon-button {
+    min-height: 42px;
+    border-radius: 14px;
+    padding-inline: 14px;
+  }
+
+  .icon-button {
+    width: 42px;
+    min-width: 42px;
+    font-size: 20px;
+  }
+
+  .form-actions {
+    gap: 8px;
+    padding: 12px 12px calc(12px + env(safe-area-inset-bottom));
+  }
+
+  .dialog-header {
+    margin: -12px -12px 12px;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  fieldset {
+    margin: 0 0 14px;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  legend {
+    font-size: 12px;
+  }
+
+  .two-columns {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (min-width: 620px) {
