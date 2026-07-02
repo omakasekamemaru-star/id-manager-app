@@ -15,6 +15,18 @@
   --personal: #f97316;
   --danger: #ef4444;
   --shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+  --field-bg: #ffffff;
+  --field-text: #111827;
+  --field-placeholder: #64748b;
+  --field-border: #cbd5e1;
+  --field-border-hover: #94a3b8;
+  --field-focus: #4f46e5;
+  --field-focus-ring: rgba(79, 70, 229, 0.18);
+  --field-label: #475569;
+  --option-bg: #ffffff;
+  --option-text: #111827;
+  --option-selected-bg: #4f46e5;
+  --option-selected-text: #ffffff;
 }
 
 html[data-theme="dark"],
@@ -35,6 +47,18 @@ body[data-theme="dark"] {
   --personal: #fb923c;
   --danger: #f87171;
   --shadow: 0 20px 40px rgba(2, 6, 23, 0.45);
+  --field-bg: #111827;
+  --field-text: #f8fafc;
+  --field-placeholder: #94a3b8;
+  --field-border: #64748b;
+  --field-border-hover: #cbd5e1;
+  --field-focus: #a5b4fc;
+  --field-focus-ring: rgba(165, 180, 252, 0.34);
+  --field-label: #dbeafe;
+  --option-bg: #0f172a;
+  --option-text: #f8fafc;
+  --option-selected-bg: #4f46e5;
+  --option-selected-text: #ffffff;
 }
 
 * {
@@ -203,7 +227,7 @@ main {
 
 .field span,
 legend {
-  color: var(--muted);
+  color: var(--field-label);
   font-size: 13px;
   font-weight: 700;
 }
@@ -214,24 +238,42 @@ textarea {
   width: 100%;
   min-height: 48px;
   padding: 10px 12px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--field-border);
   border-radius: 14px;
-  background: var(--surface-strong);
-  color: var(--ink);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  background: var(--field-bg);
+  color: var(--field-text);
+  caret-color: var(--field-focus);
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--field-placeholder);
+  opacity: 1;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--field-border-hover);
 }
 
 select option {
-  background: var(--surface-strong);
-  color: var(--ink);
+  background: var(--option-bg);
+  color: var(--option-text);
+}
+
+select option:checked {
+  background: var(--option-selected-bg);
+  color: var(--option-selected-text);
 }
 
 input:focus,
 select:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.16);
+  border-color: var(--field-focus);
+  box-shadow: 0 0 0 4px var(--field-focus-ring);
   transform: translateY(-1px);
 }
 
@@ -532,6 +574,12 @@ fieldset {
   background: rgba(248, 250, 252, 0.72);
 }
 
+body[data-theme="dark"] fieldset,
+html[data-theme="dark"] fieldset {
+  border-color: rgba(148, 163, 184, 0.34);
+  background: rgba(15, 23, 42, 0.72);
+}
+
 legend {
   padding: 0 6px;
 }
@@ -546,6 +594,12 @@ legend {
   padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
   background: rgba(255, 255, 255, 0.96);
   border-top: 1px solid var(--line);
+}
+
+body[data-theme="dark"] .form-actions,
+html[data-theme="dark"] .form-actions {
+  background: rgba(15, 23, 42, 0.96);
+  border-top-color: rgba(148, 163, 184, 0.34);
 }
 
 @media (max-width: 480px) {
